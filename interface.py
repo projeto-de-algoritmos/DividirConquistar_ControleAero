@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from teste import le_csv
 
 def gerar_plano_cartesiano(coordenadas_iniciais, coordenadas_finais):
     # Extrai as coordenadas iniciais x e y do array
@@ -26,11 +27,13 @@ def gerar_plano_cartesiano(coordenadas_iniciais, coordenadas_finais):
     # Mostra o gráfico
     plt.grid(True)
     plt.ion()  # Ativa o modo de atualização interativa
+    tamanho = len(coordenadas_iniciais)
 
     # Atualiza os pontos até que alcancem as coordenadas finais
     while x_inicial != x_final or y_inicial != y_final:
         # Atualiza as coordenadas iniciais para cada ponto
-        for i in range(len(coordenadas_iniciais)):
+        i = 0
+        while i < tamanho:
             if x_inicial[i] < x_final[i]:
                 x_inicial[i] += 1
             elif x_inicial[i] > x_final[i]:
@@ -41,8 +44,19 @@ def gerar_plano_cartesiano(coordenadas_iniciais, coordenadas_finais):
             elif y_inicial[i] > y_final[i]:
                 y_inicial[i] -= 1
 
+            if (x_inicial[i] >= x_final[i]-1 and x_inicial[i] <= x_final[i]+1):
+                if (y_inicial[i] >= y_final[i]-1 and y_inicial[i] <= y_final[i]+1):
+                    x_final.pop(i)
+                    x_inicial.pop(i)
+                    y_inicial.pop(i)
+                    y_final.pop(i)
+                    tamanho-=1
+
+            i+=1
+
         # Atualiza as coordenadas dos pontos no gráfico
-        pontos.set_offsets(list(zip(x_inicial, y_inicial)))
+        if len(x_inicial)>0 and len(y_inicial)>0:
+            pontos.set_offsets(list(zip(x_inicial, y_inicial)))
 
         # Força a atualização do gráfico
         plt.draw()
@@ -53,6 +67,5 @@ def gerar_plano_cartesiano(coordenadas_iniciais, coordenadas_finais):
 
 
 # Exemplo de utilização
-coordenadas_iniciais = [(-74.0060, 40.7128), (-118.2437, 34.0522), (-0.1278, 51.5074), (151.2093, -33.8688)]
-coordenadas_finais = [(-0.1278, 51.5074), (139.6917, 35.6895), (37.6176, 55.7558), (-43.1729, -22.9068)]
+coordenadas_iniciais, coordenadas_finais, voos = le_csv()
 gerar_plano_cartesiano(coordenadas_iniciais, coordenadas_finais)
