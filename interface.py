@@ -23,10 +23,12 @@ def gerar_plano_cartesiano(coordenadas_iniciais, coordenadas_finais):
     # Inicializa os pontos com as coordenadas iniciais
     pontos = ax.scatter(x_inicial, y_inicial)
 
-    # Função chamada quando o botão é clicado
-    def atualizar_grafico(event):
-        nonlocal x_inicial, y_inicial
+    # Mostra o gráfico
+    plt.grid(True)
+    plt.ion()  # Ativa o modo de atualização interativa
 
+    # Atualiza os pontos até que alcancem as coordenadas finais
+    while x_inicial != x_final or y_inicial != y_final:
         # Atualiza as coordenadas iniciais para cada ponto
         for i in range(len(coordenadas_iniciais)):
             if x_inicial[i] < x_final[i]:
@@ -44,15 +46,11 @@ def gerar_plano_cartesiano(coordenadas_iniciais, coordenadas_finais):
 
         # Força a atualização do gráfico
         plt.draw()
+        plt.pause(0.1)  # Pausa para permitir a visualização das alterações
 
-    # Cria um botão
-    button_ax = plt.axes([0.7, 0.05, 0.2, 0.075])  # Posição e tamanho do botão
-    button = plt.Button(button_ax, 'Atualizar')
-    button.on_clicked(atualizar_grafico)
-
-    # Exibe o gráfico
-    plt.grid(True)
+    plt.ioff()  # Desativa o modo de atualização interativa
     plt.show()
+
 
 # Exemplo de utilização
 coordenadas_iniciais = [(-74.0060, 40.7128), (-118.2437, 34.0522), (-0.1278, 51.5074), (151.2093, -33.8688)]
