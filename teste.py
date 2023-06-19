@@ -2,25 +2,19 @@ import distancia_pontos
 from distancia_pontos import Point
 import pandas as pd
 
-def main():
+def le_csv():
     df = pd.read_csv("voos.csv")
     df = df.reset_index()
 
     ponto = []
 
-    count = 0
-
     for x, y, z in zip(df['latitude_partida'], df['longitude_partida'], df['numero_voo']):
-        ponto[count] == [x, y, z]
+        ponto.append([x, y, z])
 
     pontos = []
 
     for i in ponto:
-        pont = Point(i)
+        pont = Point(x = i[0], y = i[1], voo = i[2])
         pontos.append(pont)
 
-    n = len(pontos)
-
-    print(distancia_pontos.closest(pontos, n))
-
-main()
+    return pontos
