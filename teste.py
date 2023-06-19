@@ -7,14 +7,15 @@ def le_csv():
     df = df.reset_index()
 
     ponto = []
+    voos = []
 
     for x, y, z in zip(df['latitude_partida'], df['longitude_partida'], df['numero_voo']):
-        ponto.append([x, y, z])
+        ponto.append((x, y))
+        voos.append(z)
 
-    pontos = []
+    destinos = []
 
-    for i in ponto:
-        pont = Point(x = i[0], y = i[1], voo = i[2])
-        pontos.append(pont)
+    for x, y in zip(df['latitude_destino'], df['longitude_destino']):
+        destinos.append((x, y))
 
-    return pontos
+    return ponto, destinos, voos
