@@ -1,13 +1,22 @@
 import math
 
 class Point:
-    def __init__(self, x, y, voo):
+    def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.voo = voo
     
     def __str__(self):
-        return f'({self.x}, {self.y})'
+        return f'Point({self.x}, {self.y})'
+    
+    @classmethod
+    def from_tuples(cls, tuples):
+        points = []
+        for i in range(len(tuples)):
+            x, y = tuples[i]
+            point = cls(x, y)
+            points.append(point)
+        return points
+
 
 def compareX(a, b):
     p1 = a
@@ -72,16 +81,16 @@ def closest(P, n):
     P = sorted(P, key=lambda point: point.x)
     return closestUtil(P, n)
 
-# Exemplo de uso
-pontos = [
-    Point(1, 2, 'A'),
-    Point(5, 9, 'B'),
-    Point(3, 7, 'C'),
-    Point(2, 4, 'D'),
-    Point(6, 3, 'E')
-]
-
-distancia_minima, pontos_minimos = closest(pontos, len(pontos))
-ponto1, ponto2 = pontos_minimos
-print("Distância mínima:", distancia_minima)
-print("Pontos com distância mínima:", ponto1, ponto2)
+## Exemplo de uso
+#pontos = [
+#    Point(1, 2, 'A'),
+#    Point(5, 9, 'B'),
+#    Point(3, 7, 'C'),
+#    Point(2, 4, 'D'),
+#    Point(6, 3, 'E')
+#]
+#
+#distancia_minima, pontos_minimos = closest(pontos, len(pontos))
+#ponto1, ponto2 = pontos_minimos
+#print("Distância mínima:", distancia_minima)
+#print("Pontos com distância mínima:", ponto1, ponto2)
