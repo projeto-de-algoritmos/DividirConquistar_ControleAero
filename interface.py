@@ -84,14 +84,14 @@ def gerar_plano_cartesiano(coordenadas_iniciais, coordenadas_finais):
             # Atualiza as coordenadas dos pontos no gráfico
         if len(x_inicial)>0 and len(y_inicial)>0:
             plt.plot([ponto1.x, ponto2.x], [ponto1.y, ponto2.y], 'b-')
-            plt.text((ponto1.x + ponto2.x) / 2, (ponto1.y + ponto2.y) / 2, str(distancia_minima), ha='center', va='bottom')
+            plt.text((ponto1.x + ponto2.x) / 2, (ponto1.y + ponto2.y) / 2, str(int(distancia_minima)), ha='center', va='bottom')
             plt.scatter([ponto1.x, ponto2.x], [ponto1.y, ponto2.y], color='green')
             pontos.set_offsets(list(zip(x_inicial, y_inicial)))
 
 
         # Força a atualização do gráfico
         plt.draw()
-        plt.pause(0.1)  # Pausa para permitir a visualização das alterações
+        plt.pause(1.0)  # Pausa para permitir a visualização das alterações
 
     plt.ioff()  # Desativa o modo de atualização interativa
     plt.show()
