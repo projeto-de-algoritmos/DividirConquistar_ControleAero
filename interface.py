@@ -76,7 +76,7 @@ def gerar_plano_cartesiano(coordenadas_iniciais, coordenadas_finais):
 
             distancia_minima, pontos_minimos = closest(moved, len(moved))
             ponto1, ponto2 = pontos_minimos
-            print("menor distancia: ",distancia_minima)
+            print("Pontos:",ponto1,ponto2,"menor distancia: ",distancia_minima)
 
             i+=1
 
