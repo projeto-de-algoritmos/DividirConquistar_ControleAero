@@ -56,4 +56,8 @@ Segue um desenho de como foi implementado o algoritmo de exemplo para a compreen
 ![exemplo](imagens/exemplo_foto.png)
 
 
+## Apresentação
 
+Link do video:
+
+https://youtu.be/Cz-CAtS8XeU
